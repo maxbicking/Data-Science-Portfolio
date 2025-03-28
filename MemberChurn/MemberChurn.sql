@@ -75,6 +75,8 @@ Query: Find all the records indicating a member was pushed
 If previous paid thru date <> current paid thru date
     AND current treansaction id IS NULL THEN 'Pushed'
 
+GET: List of ID's of members who have been pushed; PUSHED
+
  */
 with Pushed AS (
     SELECT 
@@ -112,6 +114,7 @@ ORDER BY 2 DESC
 
 SELECT "Name" FROM PRODUCTION.REPL_SALESFORCE_OWNBACKUP.CONTACT WHERE "Id" = --; --testing someone who apparently was pushed 9 times (not sure that's possible)
 --Check on this member, what do the push records actually look like?
+
 with Pushed AS (
     SELECT 
         *,
@@ -133,6 +136,9 @@ WHERE "Paid_thru_date__c" <> PREVIOUS_PAID_THRU_DATE --change in paid thru date
 Churn Case 2:
 How many people go from operating to non-operating?
 This happens YoY? Does the time actually matter? 
+
+GET: List of people who have fallen off roles; OFF_ROLES
+
  */
 
 with OffRoles AS (
@@ -159,3 +165,23 @@ SELECT DISTINCT "Title" FROM TEST.CONTACT_SNAPSHOTS.CS_MEMBERSHIP_MERGE WHERE AA
 --Find out how many of these members have switched jobs (>1 title or >1 accountid)
 
 
+/*
+
+Columns to Add:
+
+--PUSHED (Bool) = AACR_ID in PUSHED
+
+--OFF_ROLES (Bool) = AACR_ID in OFF_ROLES
+
+--CHURN (Bool) = AACR_ID in PUSHED or ID in OFF_ROLES
+
+ */
+
+
+
+
+
+
+
+
+ 
