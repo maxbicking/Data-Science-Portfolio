@@ -168,6 +168,10 @@ SELECT DISTINCT "Title" FROM TEST.CONTACT_SNAPSHOTS.CS_MEMBERSHIP_MERGE WHERE AA
 /*
 Columns to Add:
 
+--Engagement score
+
+--Opportunities (most recent, total)
+
 --PUSHED (Bool) = AACR_ID in PUSHED
 
 --OFF_ROLES (Bool) = AACR_ID in OFF_ROLES
