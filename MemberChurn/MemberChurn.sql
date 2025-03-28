@@ -1,3 +1,19 @@
+/*
+EDA
+
+Main Priorities:
+
+1. Determine who has churned
+    a. Who has fallen off roles?
+    b. Who has been pushed through without upgrade?
+
+2. Write queries to join fields from other relevant tables, i.e. transactions
+
+3. Construct case statements for any formulaic fields
+
+
+ */
+
 SELECT "SALESFORCE ID", COUNT(*) FROM PRODUCTION.MART_MEMBERSHIP_HISTORY.MEMBERSHIP_DATA_TERM_BACKUP 
 WHERE "Transaction Id" IS NULL 
     AND "TERM YEAR" <= YEAR(CURRENT_DATE()) + 1 
