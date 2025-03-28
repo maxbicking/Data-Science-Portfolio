@@ -166,7 +166,6 @@ SELECT DISTINCT "Title" FROM TEST.CONTACT_SNAPSHOTS.CS_MEMBERSHIP_MERGE WHERE AA
 
 
 /*
-
 Columns to Add:
 
 --PUSHED (Bool) = AACR_ID in PUSHED
@@ -184,4 +183,3 @@ Columns to Add:
 
 
 
- 
