@@ -15,10 +15,12 @@ ORDER BY 2 DESC;
 --"current year" transaction id? excluse emeritus?
 --Filter out test accounts
 
-SELECT "Id", "Name", "Email", "Member_Type__c" FROM PRODUCTION.REPL_SALESFORCE_OWNBACKUP.CONTACT WHERE "Id" = '0031I00000gUwfjQAC';
+SELECT "Id", "Name", "Email", "Member_Type__c" FROM PRODUCTION.REPL_SALESFORCE_OWNBACKUP.CONTACT WHERE "Id" = --
+;
 
 
-SELECT * FROM PRODUCTION.MART_MEMBERSHIP_HISTORY.MEMBERSHIP_DATA_TERM_BACKUP WHERE "SALESFORCE ID" = '0031I00000WspxlQAB';
+SELECT * FROM PRODUCTION.MART_MEMBERSHIP_HISTORY.MEMBERSHIP_DATA_TERM_BACKUP WHERE "SALESFORCE ID" = --
+;
 
 --Create a view that merges membership information with contact info track mem-related transactions
 --create or replace view TEST.CONTACT_SNAPSHOTS.CS_MEMBERSHIP_MERGE
@@ -92,7 +94,7 @@ GROUP BY 1
 ORDER BY 2 DESC
 ;
 
-SELECT "Name" FROM PRODUCTION.REPL_SALESFORCE_OWNBACKUP.CONTACT WHERE "Id" = '0031I00000Ws60XQAR'; --testing someone who apparently was pushed 9 times (not sure that's possible)
+SELECT "Name" FROM PRODUCTION.REPL_SALESFORCE_OWNBACKUP.CONTACT WHERE "Id" = --; --testing someone who apparently was pushed 9 times (not sure that's possible)
 --Check on this member, what do the push records actually look like?
 with Pushed AS (
     SELECT 
@@ -108,7 +110,7 @@ WHERE "Paid_thru_date__c" <> PREVIOUS_PAID_THRU_DATE --change in paid thru date
     AND "Transaction Id" IS NULL --current trans id is null
     AND "Id" NOT IN (SELECT "Id" FROM PRODUCTION.REPL_SALESFORCE_OWNBACKUP.CONTACT WHERE "Email" LIKE '%yopmail.com%') --filtering out test accounts
     AND "Member_Type__c" <> 'Emeritus Member'
-    AND "Id" = '0031I00000Ws60XQAR'
+    AND "Id" = --
 ;
 
 /*
@@ -136,5 +138,8 @@ GROUP BY 1
 ORDER BY 2 DESC
 ; --this gives list of members who have fallen off roles at some point. 
 
-SELECT DISTINCT "Title" FROM TEST.CONTACT_SNAPSHOTS.CS_MEMBERSHIP_MERGE WHERE AACR_ID = '220177'; --this person had a title change, interesting!
+SELECT DISTINCT "Title" FROM TEST.CONTACT_SNAPSHOTS.CS_MEMBERSHIP_MERGE WHERE AACR_ID = --
+; --this person had a title change, interesting!
 --Find out how many of these members have switched jobs (>1 title or >1 accountid)
+
+
