@@ -170,13 +170,14 @@ Columns to Add:
 
 --Engagement score
 
---Opportunities (most recent, total)
+--Opportunities (most recent, total)--contact opportunity merge exists already
 
 --PUSHED (Bool) = AACR_ID in PUSHED
 
 --OFF_ROLES (Bool) = AACR_ID in OFF_ROLES
 
 --CHURN (Bool) = AACR_ID in PUSHED or ID in OFF_ROLES
+    Or make these two separate datasets
 
  */
 
