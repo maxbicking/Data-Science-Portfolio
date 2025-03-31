@@ -168,9 +168,17 @@ SELECT DISTINCT "Title" FROM TEST.CONTACT_SNAPSHOTS.CS_MEMBERSHIP_MERGE WHERE AA
 /*
 Columns to Add:
 
+--First, figure out which columns from contact to keep
+
 --Engagement score
 
 --Opportunities (most recent, total)--contact opportunity merge exists already
+
+--AACR ID
+
+--Title change (CTE probably)
+
+--Meeting attendance
 
 --PUSHED (Bool) = AACR_ID in PUSHED
 
@@ -183,7 +191,58 @@ Columns to Add:
 
 
 
+/*
+Will create a contact activity table in TEST that has both donation info and meeting attendance info
 
+ */
+
+SELECT * FROM TEST.TEST_AREA.CONTACT_ACTIVITY LIMIT 1000;
+
+with TitleChange AS (
+    SELECT
+        DISTINCT "Id"
+    FROM TEST.CONTACT_SNAPSHOTS.CS_MEMBERSHIP_MERGE
+    GROUP BY 1
+    HAVING COUNT(DISTINCT "Title") > 1 OR COUNT(DISTINCT "AccountId") > 1
+),
+Pushed1 AS (
+    SELECT 
+        *,
+        LAG(CSM."Paid_thru_date__c") OVER(PARTITION BY CSM."AACR_ID" ORDER BY CSM."Paid_thru_date__c") AS PREVIOUS_PAID_THRU_DATE,
+        LAG(CSM."Transaction Id") OVER(PARTITION BY CSM."AACR_ID" ORDER BY CSM."Paid_thru_date__c") AS PREVIOUS_TRANSACTION_ID
+    FROM TEST.CONTACT_SNAPSHOTS.CS_MEMBERSHIP_MERGE AS CSM
+),
+Pushed2 AS ( 
+    SELECT
+        DISTINCT "Id"
+    FROM Pushed1 
+    WHERE "Paid_thru_date__c" <> PREVIOUS_PAID_THRU_DATE --change in paid thru date
+        AND "Transaction Id" IS NULL --current trans id is null
+        AND "Id" NOT IN (SELECT "Id" FROM PRODUCTION.REPL_SALESFORCE_OWNBACKUP.CONTACT WHERE "Email" LIKE '%yopmail.com%') --filtering out test accounts
+        AND "Member_Type__c" <> 'Emeritus Member'
+),
+OffRoles1 AS (
+    SELECT 
+        *,
+        LAG(CSM."Paid_thru_date__c") OVER(PARTITION BY CSM."AACR_ID" ORDER BY CSM."Paid_thru_date__c") AS PREVIOUS_PAID_THRU_DATE,
+        LAG(CSM."Final_Membership_Status") OVER(PARTITION BY CSM."AACR_ID" ORDER BY CSM."Paid_thru_date__c") AS PREVIOUS_OM_STATUS
+    FROM TEST.CONTACT_SNAPSHOTS.CS_MEMBERSHIP_MERGE AS CSM
+),
+OffRoles2 AS (
+    SELECT
+        DISTINCT "Id"
+    FROM OffRoles1 
+    WHERE "Paid_thru_date__c" <> PREVIOUS_PAID_THRU_DATE
+        AND PREVIOUS_OM_STATUS = 'Operating Member' AND "Final_Membership_Status" = 'Non-operating Member'
+        AND "Id" NOT IN (SELECT "Id" FROM PRODUCTION.REPL_SALESFORCE_OWNBACKUP.CONTACT WHERE "Email" LIKE '%yopmail.com%') --filtering out test accounts
+        AND "Member_Type__c" <> 'Emeritus Member'
+)
+SELECT
+    CASE WHEN "Id" IN (SELECT "Id" FROM TitleChange) THEN 'Yes' ELSE 'No' END AS "TITLE_CHANGE",
+    CASE WHEN "Id" IN (SELECT "Id" FROM Pushed2) THEN 'Yes' ELSE 'No' END AS "PUSHED",
+    CASE WHEN "Id" IN (SELECT "Id" FROM OffRoles2) THEN 'Yes' ELSE 'No' END AS "CHURNED",
+    *
+FROM TEST.TEST_AREA.CONTACT_ACTIVITY;
 
 
 
