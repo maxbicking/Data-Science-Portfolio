@@ -41,7 +41,7 @@ This project builds predictive models to identify members at risk of **churning*
 
 - Engagement metrics like `DAYS_SINCE_LAST_ACTIVITY` and `MEMBERSHIP_STATUS` are strong predictors of both churn and push likelihood.
 - Donation history and opt-out flags significantly influence churn risk.
-- SMOTE + XGBoost yielded the best balance of recall and precision for rare churn cases.
+- XGBoost yielded the best balance of recall and precision for rare churn cases.
 
 ## Next Steps
 
