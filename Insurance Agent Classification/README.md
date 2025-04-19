@@ -89,5 +89,5 @@ This project successfully identified meaningful segments of insurance agents, fa
 
 ## Author
 
-- **[Your Name]** – Data Analyst
+- **Max Bicking** – Data Analyst
 
