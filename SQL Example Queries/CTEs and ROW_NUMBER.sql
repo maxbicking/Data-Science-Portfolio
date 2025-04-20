@@ -12,6 +12,7 @@ SQL Concepts Used:
 - Aggregate functions (SUM, COUNT)
 - Window functions (ROW_NUMBER with PARTITION BY)
 - Datamarts
+
  ***********************************************************/
 
 with DonationTotal AS ( --calculate the total number of donations by conact
@@ -19,7 +20,7 @@ with DonationTotal AS ( --calculate the total number of donations by conact
         CONTACT_ID,
         SUM("AMOUNT") AS TOTAL_AMOUNT,
         COUNT("ID") AS NUMBER_OF_DONATIONS
-    FROM PRODUCTION.DONATIONS.ALL_DONATIONS
+    FROM DONATIONS
     GROUP BY 1
 ),
 Recent AS ( --find the amount and date of the most recent donation of each contact 
@@ -29,7 +30,7 @@ Recent AS ( --find the amount and date of the most recent donation of each conta
         ROW_NUMBER() OVER(PARTITION BY CONTACT_ID ORDER BY DONATION_DATE DESC) AS ROW_ORDER, 
             --label all contact records with a row number ordered by donation date (most recent 1st). will later pull only top row as most recent
         "AMOUNT" AS MOST_RECENT_DONATION_AMOUNT
-    FROM PRODUCTION.DONATIONS.ALL_DONATIONS
+    FROM DONATIONS
 ),
 MostRecent AS ( --row order 1 finds top result
     SELECT 
@@ -44,13 +45,13 @@ SELECT
     MostRecent.DATE_OF_MOST_RECENT_DONATION AS DATE_OF_MOST_RECENT_DONATION,
     DonationTotal.TOTAL_AMOUNT AS TOTAL_DONATION_AMOUNT,
     DonationTotal.NUMBER_OF_DONATIONS AS NUMBER_OF_DONATIONS
-FROM PRODUCTION.MEETINGS_MART.REGISTRATIONS AS MR
-    LEFT JOIN PRODUCTION.CONTACTS.ALL_CONTACTS AS CON
+FROM MART_REGISTRATIONS AS MR
+    LEFT JOIN CONTACTS AS CON
         ON MR.CONTACT_ID = CON."ID"
     LEFT JOIN MostRecent
         ON CON."ID" = MostRecent.CONTACT_ID
     LEFT JOIN DonationTotal
         ON CON."ID" = DonationTotal.CONTACT_ID
-    LEFT JOIN PRODUCTION.MEETINGS_MART.EVENTS AS EV
+    LEFT JOIN EVENTS AS EV
         ON MR.EVENT_ID = EV."ID"
 WHERE MR.EVENT_ID = 'abcd1234';
