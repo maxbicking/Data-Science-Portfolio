@@ -62,3 +62,5 @@ FROM Merged
         ON Merged."ID" = CH."ID" AND Merged.DATE_OF_SNAPSHOT = CH.DATE_OF_SNAPSHOT
     LEFT JOIN PSH
         ON Merged."ID" = PSH."ID" AND Merged.DATE_OF_SNAPSHOT = PSH.DATE_OF_SNAPSHOT;
+
+
