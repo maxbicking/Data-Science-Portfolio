@@ -1,10 +1,11 @@
-/***********************************************************
+/***********************************************************************
 
 MEETING ATTENDANCE WITH DONATION HISTORY
 
 Goal: 
 - Display all participation records for a given EVENT_ID
-- For every attendee, display their donation history (total amount given, number of donations, most recent donation)
+- For every attendee, display their donation history 
+    (total amount given, number of donations, most recent donation)
 
 SQL Concepts Used:
 - JOINs
@@ -13,7 +14,7 @@ SQL Concepts Used:
 - Window functions (ROW_NUMBER with PARTITION BY)
 - Datamarts
 
- ***********************************************************/
+ ***********************************************************************/
 
 with DonationTotal AS ( --calculate the total number of donations by conact
     SELECT
