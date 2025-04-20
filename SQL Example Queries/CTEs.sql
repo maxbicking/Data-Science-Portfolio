@@ -14,7 +14,7 @@ SQL Concepts Used:
 - Datamarts
  ***********************************************************/
 
-with RecentGift AS ( --calculate the total number of donations by conact
+with DonationTotal AS ( --calculate the total number of donations by conact
     SELECT
         CONTACT_ID,
         SUM("AMOUNT") AS TOTAL_AMOUNT,
@@ -42,15 +42,15 @@ SELECT
     CON."ID",
     MostRecent.MOST_RECENT_DONATION_AMOUNT AS MOST_RECENT_DONATION_AMOUNT,
     MostRecent.DATE_OF_MOST_RECENT_DONATION AS DATE_OF_MOST_RECENT_DONATION,
-    RecentGift.TOTAL_AMOUNT AS TOTAL_DONATION_AMOUNT,
-    RecentGift.NUMBER_OF_DONATIONS AS NUMBER_OF_DONATIONS
+    DonationTotal.TOTAL_AMOUNT AS TOTAL_DONATION_AMOUNT,
+    DonationTotal.NUMBER_OF_DONATIONS AS NUMBER_OF_DONATIONS
 FROM PRODUCTION.MEETINGS_MART.REGISTRATIONS AS MR
     LEFT JOIN PRODUCTION.CONTACTS.ALL_CONTACTS AS CON
         ON MR.CONTACT_ID = CON."ID"
     LEFT JOIN MostRecent
         ON CON."ID" = MostRecent.CONTACT_ID
-    LEFT JOIN RecentGift
-        ON CON."ID" = RecentGift.CONTACT_ID
+    LEFT JOIN DonationTotal
+        ON CON."ID" = DonationTotal.CONTACT_ID
     LEFT JOIN PRODUCTION.MEETINGS_MART.EVENTS AS EV
         ON MR.EVENT_ID = EV."ID"
 WHERE MR.EVENT_ID = 'abcd1234';
