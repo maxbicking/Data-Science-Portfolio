@@ -3,7 +3,8 @@
 CALCULATE ENGAGEMENT SCORE
 
 Goal:
-Calculate the contact engagement score based on member status, login activity, 
+Calculate the contact engagement score based on member status, 
+login activity, 
 donation history, and email clickE.
 
 SQL Concepts Used:
