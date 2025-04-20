@@ -1,17 +1,20 @@
-/******************************************************
+/**********************************************************
 
 TOP DONORS FROM COMPANY A
 
 Goal:
-Determine the total donation amount of every employee from Company A who has donated at least $100.
-Return their ID, email, and donation total, and sort by donation total (highest first).
+Determine the total donation amount of every employee 
+from Company A who has donated at least $100.
+
+Return their ID, email, and donation total, and sort by
+by donation total (highest first).
 
 SQL Concepts Used:
 - INNER JOIN
 - Subqueries
 - HAVING
 
-******************************************************/
+**********************************************************/
 
 SELECT
     CON."Id",
