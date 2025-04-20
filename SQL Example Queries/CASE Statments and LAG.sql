@@ -1,13 +1,17 @@
-/*********************************************************
+/*****************************************************************
 
 CASE STATEMENTS WITH LAG
 
 Goal:
-A table of contacts has been snapshotted at regular intervals and UNIONed. This table is called Merged. Create a VIEW that contains all columns from 
+A table of contacts has been snapshotted at regular intervals 
+and UNIONed. This table is called Merged. Create a VIEW 
+that contains all columns from 
 Merged and 3 columns:
 - If a contact's Title has changed, then label "Title Change"
-- If a contact's membership status chsnges from "OM" to "Non-OM", then the contact has churned
-- If a contact's PAID_THRU_DATE has changed with no SALES_NUMBER, then the contact has been "Pushed"
+- If a contact's membership status chsnges from "OM" to 
+    "Non-OM", then the contact has churned
+- If a contact's PAID_THRU_DATE has changed with 
+    no SALES_NUMBER, then the contact has been "Pushed"
 
 SQL Concepts Used:
 - LAG
@@ -15,7 +19,7 @@ SQL Concepts Used:
 - CTEs
 - Creation of Views/Tables
 
- *********************************************************/
+ *****************************************************************/
 
 CREATE OR REPLACE VIEW MERGED_FINAL
 AS
