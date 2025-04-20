@@ -14,9 +14,10 @@ SQL Concepts Used:
 - CASE statements
 - CTEs
 - Creation of Views/Tables
+
  *********************************************************/
 
-CREATE OR REPLACE VIEW TEST.CONTACT_MERGES.MERGED_FINAL
+CREATE OR REPLACE VIEW MERGED_FINAL
 AS
 with CH AS (
     SELECT 
