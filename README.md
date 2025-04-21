@@ -122,10 +122,10 @@ Python, NLTK, scikit-learn, pandas
 
 ## Experience
 
-- **[Manager of Data Analytics] at [American Association for Cancer Research]**  
+- **Manager of Data Analytics at American Association for Cancer Research**  
   *January 2025 – Present*  
 
-- **[Data Analyst] at [American Association for Cancer Research]**  
+- **Data Analyst at American Association for Cancer Research**  
   *May 2023 – January 2025*  
 
 
