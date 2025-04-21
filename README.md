@@ -133,9 +133,9 @@ Python, NLTK, scikit-learn, pandas
 
 Feel free to reach out to me for collaboration, questions, or opportunities:
 
-- Email: [mabicking@gmail.com]
-- LinkedIn: [https://www.linkedin.com/in/maxwell-bicking/]
-- GitHub: [https://github.com/maxbicking](https://github.com/maxbicking)
+- Email: mabicking@gmail.com
+- LinkedIn: https://www.linkedin.com/in/maxwell-bicking/
+- GitHub: https://github.com/maxbicking
 
 ---
 
