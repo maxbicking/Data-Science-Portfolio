@@ -115,18 +115,18 @@ Python, NLTK, scikit-learn, pandas
 ## Education
 
 - **University of Pennsylvania**  
-  [Details about degree, major, and graduation year]
+  Master of Science in Mathematics Education, 2019
 
 - **Ursinus College**  
-  [Details about degree, major, and graduation year]
+  Bachelor of Science in Mathematics, 2016
 
 ## Experience
 
 - **[Manager of Data Analytics] at [American Association for Cancer Research]**  
-  *[January 2025] – [Present]*  
+  *January 2025 – Present*  
 
 - **[Data Analyst] at [American Association for Cancer Research]**  
-  *[May 2023] – [January 2025]*  
+  *May 2023 – January 2025*  
 
 
 ## Contact
