@@ -2,6 +2,8 @@
 
 This folder contains a curated collection of SQL scripts showcasing data analysis, transformation, and reporting techniques used in real-world analytics projects. These examples reflect core skills in SQL logic, optimization, and business-focused querying for stakeholders.
 
+These queries have been anonymized to preserve privacy and data integrity. 
+
 ## Files
 
 - `donor_trend_analysis.sql`  
